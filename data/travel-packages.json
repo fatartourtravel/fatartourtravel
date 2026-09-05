@@ -1,0 +1,232 @@
+{
+  "currencyBase": "MYR",
+  "currencyRates": {
+    "MYR": 1,
+    "IDR": 3900,
+    "SGD": 0.3
+  },
+  "note": "Edit currencyRates whenever you want. Package prices below are MYR per pax.",
+  "packages": [
+    {
+      "slug": "batam-penyengat-3d2n",
+      "title": { "en": "Batam + Penyengat", "id": "Batam + Penyengat" },
+      "duration": "3D2N",
+      "destinations": ["Batam", "Penyengat"],
+      "image": "/package-01.webp",
+      "featured": true,
+      "prices": {
+        "standard": { "4": 600, "6": 547, "8": 594, "10": 564, "12": 542 },
+        "full": { "4": 760, "6": 707, "8": 754, "10": 724, "12": 702 }
+      }
+    },
+    {
+      "slug": "batam-bintan-3d2n",
+      "title": { "en": "Batam + Bintan", "id": "Batam + Bintan" },
+      "duration": "3D2N",
+      "destinations": ["Batam", "Bintan"],
+      "image": "/package-02.webp",
+      "featured": true,
+      "prices": {
+        "standard": { "4": 572, "6": 521, "8": 570, "10": 540, "12": 519 },
+        "full": { "4": 754, "6": 701, "8": 750, "10": 720, "12": 699 }
+      }
+    },
+    {
+      "slug": "batam-city-tour-3d2n",
+      "title": { "en": "Batam City Tour", "id": "City Tour Batam" },
+      "duration": "3D2N",
+      "destinations": ["Batam"],
+      "image": "/package-03.webp",
+      "featured": true,
+      "prices": {
+        "standard": { "4": 500, "6": 459, "8": 499, "10": 475, "12": 458 },
+        "full": { "4": 660, "6": 619, "8": 650, "10": 635, "12": 609 }
+      }
+    },
+    {
+      "slug": "batam-bintan-penyengat-4d3n",
+      "title": { "en": "Batam + Bintan + Penyengat", "id": "Batam + Bintan + Penyengat" },
+      "duration": "4D3N",
+      "destinations": ["Batam", "Bintan", "Penyengat"],
+      "image": "/package-04.webp",
+      "featured": false,
+      "prices": {
+        "standard": { "4": 680, "6": 607, "8": 679, "10": 643, "12": 606 },
+        "full": { "4": 922, "6": 849, "8": 921, "10": 885, "12": 848 }
+      }
+    },
+    {
+      "slug": "batam-bintan-4d3n",
+      "title": { "en": "Batam + Bintan", "id": "Batam + Bintan" },
+      "duration": "4D3N",
+      "destinations": ["Batam", "Bintan"],
+      "image": "/package-05.webp",
+      "featured": false,
+      "prices": {
+        "standard": { "4": 695, "6": 631, "8": 693, "10": 661, "12": 629 },
+        "full": { "4": 924, "6": 860, "8": 922, "10": 890, "12": 858 }
+      }
+    },
+    {
+      "slug": "batam-city-tour-4d3n",
+      "title": { "en": "Batam City Tour", "id": "City Tour Batam" },
+      "duration": "4D3N",
+      "destinations": ["Batam"],
+      "image": "/package-06.webp",
+      "featured": false,
+      "prices": {
+        "standard": { "4": 623, "6": 569, "8": 623, "10": 596, "12": 568 },
+        "full": { "4": 832, "6": 778, "8": 831, "10": 804, "12": 777 }
+      }
+    }
+  ],
+  "carRentals": [
+    {
+      "name": "Toyota Avanza All New",
+      "capacity": { "en": "6 seats", "id": "6 kursi" },
+      "prices": { "IDR": 700000, "MYR": 175, "SGD": 55 },
+      "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "Terios",
+      "capacity": { "en": "6 seats", "id": "6 kursi" },
+      "prices": { "IDR": 700000, "MYR": 175, "SGD": 55 },
+      "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "Daihatsu Xenia",
+      "capacity": { "en": "6 seats", "id": "6 kursi" },
+      "prices": { "IDR": 700000, "MYR": 175, "SGD": 55 },
+      "image": "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "Suzuki XL7",
+      "capacity": { "en": "6 seats", "id": "6 kursi" },
+      "prices": { "IDR": 700000, "MYR": 175, "SGD": 55 },
+      "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "Toyota Innova",
+      "capacity": { "en": "6 seats", "id": "6 kursi" },
+      "prices": { "IDR": 1150000, "MYR": 300, "SGD": 90 },
+      "image": "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "Toyota Zenix",
+      "capacity": { "en": "6 seats", "id": "6 kursi" },
+      "prices": { "IDR": 1250000, "MYR": 310, "SGD": 95 },
+      "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "Hiace Minivan",
+      "capacity": { "en": "16 seats", "id": "16 kursi" },
+      "prices": { "IDR": 1200000, "MYR": 325, "SGD": 100 },
+      "image": "https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "Elf Long",
+      "capacity": { "en": "18 seats", "id": "18 kursi" },
+      "prices": { "IDR": 1400000, "MYR": 350, "SGD": 110 },
+      "image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "Medium Bus",
+      "capacity": { "en": "30 seats", "id": "30 kursi" },
+      "prices": { "IDR": 2200000, "MYR": 550, "SGD": 175 },
+      "image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "Big Bus",
+      "capacity": { "en": "48 seats", "id": "48 kursi" },
+      "prices": { "IDR": 2950000, "MYR": 755, "SGD": 230 },
+      "image": "https://images.unsplash.com/photo-1494522358652-f30e61a60313?auto=format&fit=crop&w=1000&q=80"
+    }
+  ],
+  "hotelPartners": [
+    {
+      "name": "Batam Marriott Hotel Harbour Bay",
+      "description": {
+        "en": "A premium stay near Harbour Bay, practical for guests arriving by ferry and close to the waterfront dining area.",
+        "id": "Pilihan premium di kawasan Harbour Bay, praktis bagi tamu yang tiba lewat terminal feri dan dekat area kuliner tepi laut."
+      },
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Montigo Resorts Nongsa",
+      "description": {
+        "en": "A resort for families or couples who want a quieter stay, villa time and a slower holiday in Nongsa.",
+        "id": "Resort untuk keluarga atau pasangan yang ingin suasana lebih tenang, waktu di villa, dan liburan santai di Nongsa."
+      },
+      "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Radisson Golf & Convention Center Batam",
+      "description": {
+        "en": "A modern hotel that suits families and groups, with leisure facilities and easy access for exploring Batam.",
+        "id": "Hotel modern yang cocok untuk keluarga dan rombongan, dengan fasilitas rekreasi serta akses nyaman untuk menjelajah Batam."
+      },
+      "image": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80"
+    }
+  ],
+  "restaurantPartners": [
+    {
+      "name": "Wey Wey Seafood",
+      "description": {
+        "en": "A popular seafood stop in Harbour Bay — easy to add for guests who want Batam’s coastal food in the itinerary.",
+        "id": "Pilihan seafood populer di Harbour Bay, mudah dimasukkan untuk tamu yang ingin kuliner laut Batam di itinerary."
+      },
+      "image": "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Sei Enam Seafood Batam Centre",
+      "description": {
+        "en": "Local-style Batam seafood that works well for family meals and larger groups.",
+        "id": "Seafood khas Batam yang cocok untuk makan bersama keluarga maupun rombongan."
+      },
+      "image": "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "name": "Love Seafood Batam Centre",
+      "description": {
+        "en": "Another seafood option for Batam itineraries, suited to families and groups eating together.",
+        "id": "Opsi seafood lain untuk itinerary Batam, cocok bagi keluarga dan rombongan yang ingin makan bersama."
+      },
+      "image": "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Guest name",
+      "location": "Singapore",
+      "rating": 5,
+      "date": "",
+      "published": false,
+      "quote": {
+        "en": "Replace with a real FATAR guest review before launch.",
+        "id": "Ganti dengan testimoni asli tamu FATAR sebelum website dipublikasikan."
+      }
+    },
+    {
+      "name": "Guest name",
+      "location": "Malaysia",
+      "rating": 5,
+      "date": "",
+      "published": false,
+      "quote": {
+        "en": "Add a real note about booking, the itinerary, transport or WhatsApp help.",
+        "id": "Tambahkan pengalaman asli tentang booking, itinerary, transport, atau bantuan WhatsApp."
+      }
+    },
+    {
+      "name": "Guest name",
+      "location": "Indonesia",
+      "rating": 5,
+      "date": "",
+      "published": false,
+      "quote": {
+        "en": "Use a FATAR guest review you have permission to publish.",
+        "id": "Isi dengan review tamu FATAR yang sudah memberi izin untuk dipublikasikan."
+      }
+    }
+  ]
+}
