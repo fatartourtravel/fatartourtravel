@@ -21,10 +21,14 @@ export function getPage(locale: Locale, slug: PageSlug) {
   const raw = fs.readFileSync(file, "utf8");
   const parsed = matter(raw);
   const data = parsed.data as PageFrontmatter;
+  const rawUpdated = parsed.data.updated;
 
-  const updated = data.updated instanceof Date
-    ? data.updated.toISOString().slice(0, 10)
-    : data.updated;
+  const updated =
+    rawUpdated instanceof Date
+      ? rawUpdated.toISOString().slice(0, 10)
+      : typeof rawUpdated === "string"
+        ? rawUpdated
+        : undefined;
 
   return {
     slug,
