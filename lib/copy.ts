@@ -122,6 +122,10 @@ export type Dictionary = {
     copyright: string;
     instagram: string;
     tiktok: string;
+    about: string;
+    contact: string;
+    privacy: string;
+    terms: string;
   };
   waFloat: {
     label: string;
@@ -307,6 +311,10 @@ const en: Dictionary = {
     copyright: "All rights reserved.",
     instagram: "Instagram",
     tiktok: "TikTok",
+    about: "About",
+    contact: "Contact",
+    privacy: "Privacy",
+    terms: "Booking terms",
   },
   waFloat: {
     label: "Chat with FATAR on WhatsApp",
@@ -497,6 +505,10 @@ const id: Dictionary = {
     copyright: "Hak cipta dilindungi.",
     instagram: "Instagram",
     tiktok: "TikTok",
+    about: "Tentang kami",
+    contact: "Kontak",
+    privacy: "Privasi",
+    terms: "Syarat pemesanan",
   },
   waFloat: {
     label: "Chat FATAR di WhatsApp",

@@ -5,8 +5,9 @@ import type { Dictionary } from "@/lib/copy";
 import type { Locale } from "@/lib/i18n";
 import { fill, waLink } from "@/lib/site";
 import AutoSlider from "@/components/AutoSlider";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useState, type MouseEvent } from "react";
 
 function money(value: number, currency: Currency) {
@@ -36,9 +37,6 @@ export default function HomePage({
   const [currency, setCurrency] = useState<Currency>(locale === "id" ? "IDR" : "MYR");
   const [pax, setPax] = useState("4");
   const [packageType, setPackageType] = useState<PackageType>("standard");
-  const [scrolled, setScrolled] = useState(false);
-  const otherLocale = locale === "en" ? "id" : "en";
-
   const moveHero = (event: MouseEvent<HTMLElement>) => {
     if (window.matchMedia("(pointer: coarse)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -57,13 +55,6 @@ export default function HomePage({
 
   const convert = (myr: number) => myr * data.currencyRates[currency];
   const typeLabel = packageType === "full" ? t.packages.full : t.packages.standard;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -90,37 +81,7 @@ export default function HomePage({
 
   return (
     <main>
-      <header className={scrolled ? "nav-wrap is-scrolled" : "nav-wrap"}>
-        <nav className="nav container" aria-label={t.nav.aria}>
-          <Link className="brand" href={`/${locale}`} aria-label={t.brand.homeAria}>
-            <Image src="/android-chrome-512x512.png" alt={t.brand.logoAlt} width={62} height={62} priority />
-            <span>
-              <b>{t.brand.short}</b>
-              <small>{t.brand.name}</small>
-            </span>
-          </Link>
-          <div className="nav-links">
-            <a href="#packages">{t.nav.packages}</a>
-            <a href="#services">{t.nav.services}</a>
-            <a href="#car-rental">{t.nav.cars}</a>
-            <a href="#hotel">{t.nav.stays}</a>
-            <a href="#faq">{t.nav.faq}</a>
-          </div>
-          <div className="nav-tools">
-            <div className="lang-switch" aria-label={t.lang.switcherAria}>
-              <Link href="/en" hrefLang="en" aria-current={locale === "en" ? "page" : undefined}>
-                {t.lang.en}
-              </Link>
-              <Link href="/id" hrefLang="id" aria-current={locale === "id" ? "page" : undefined}>
-                {t.lang.id}
-              </Link>
-            </div>
-            <a className="btn btn-small" href={waLink(t.wa.nav)} target="_blank" rel="noreferrer">
-              {t.nav.whatsapp}
-            </a>
-          </div>
-        </nav>
-      </header>
+      <SiteHeader locale={locale} t={t} />
 
       <section className="hero" id="top" onMouseMove={moveHero}>
         <div className="hero-bg-wrap" aria-hidden="true">
@@ -492,43 +453,7 @@ export default function HomePage({
         </div>
       </section>
 
-      <footer>
-        <div className="container footer-grid">
-          <div className="brand footer-brand">
-            <Image src="/android-chrome-192x192.png" alt="" width={58} height={58} />
-            <span>
-              <b>{t.brand.short}</b>
-              <small>{t.brand.legalName}</small>
-            </span>
-          </div>
-          <p>{t.footer.blurb}</p>
-          <div className="socials">
-            <Link href={`/${otherLocale}`} hrefLang={otherLocale}>
-              {otherLocale === "id" ? t.lang.id : t.lang.en}
-            </Link>
-            <a href="https://www.instagram.com/hanstransporttourisservicebatm" target="_blank" rel="noreferrer">
-              {t.footer.instagram}
-            </a>
-            <a href="https://www.tiktok.com/@hanstransportouristbatam" target="_blank" rel="noreferrer">
-              {t.footer.tiktok}
-            </a>
-          </div>
-        </div>
-        <div className="container copyright">
-          © {new Date().getFullYear()} {t.brand.legalName}. {t.footer.copyright}
-        </div>
-      </footer>
-
-      <a
-        className="wa-float"
-        href={waLink(t.wa.float)}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={t.waFloat.label}
-      >
-        <span>WA</span>
-        <b>{t.waFloat.ask}</b>
-      </a>
+      <SiteFooter locale={locale} t={t} />
     </main>
   );
 }
