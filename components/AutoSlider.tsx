@@ -28,8 +28,10 @@ export default function AutoSlider({
     );
     io.observe(root);
 
+    const mobile = window.matchMedia("(max-width: 900px)");
+
     const advance = () => {
-      if (paused.current || !inView.current) return;
+      if (!mobile.matches || paused.current || !inView.current) return;
       const item = root.firstElementChild as HTMLElement | null;
       if (!item) return;
       const styles = getComputedStyle(root);

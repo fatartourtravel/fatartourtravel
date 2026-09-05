@@ -39,20 +39,15 @@ footer{background:#04142e;color:#d9e3f3;padding:48px 0 26px}.footer-grid{display
 .aos-on [data-reveal]{opacity:0;transform:translate3d(0,18px,0);transition:opacity .55s ease,transform .55s ease}
 .aos-on [data-reveal].is-in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.aos-on [data-reveal]{opacity:1;transform:none;transition:none}.nav-wrap,.hero-bg,.hero-overlay,.hero-word,.hero-in,.hero-card{animation:none}.hero-copy,.hero-card-wrap,.hero-bg-wrap{transform:none;transition:none}}
-.mobile-slider,.destination-grid.mobile-slider,.fleet-grid.mobile-slider,.partner-grid.mobile-slider,.testimonial-grid.mobile-slider{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;padding-bottom:6px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x}
-.mobile-slider::-webkit-scrollbar{display:none}
-.mobile-slider>*{flex:0 0 31%;scroll-snap-align:start;min-width:260px}
-.destination-grid.mobile-slider>*{flex-basis:68%;min-width:280px}
-.fleet-grid.mobile-slider>*{flex-basis:23%;min-width:230px}
-.partner-grid.mobile-slider>*,.testimonial-grid.mobile-slider>*{flex-basis:38%;min-width:280px}
-.testimonial-grid.mobile-slider>.testimonial-card{min-height:250px}
 @media(max-width:900px){
-  .mobile-slider{margin-inline:-18px;padding:0 18px 10px;scroll-padding-inline:18px;gap:14px}
-  .mobile-slider>*,.destination-grid.mobile-slider>*,.fleet-grid.mobile-slider>*,.partner-grid.mobile-slider>*,.testimonial-grid.mobile-slider>*{flex-basis:82%;min-width:0}
+  .mobile-slider,.destination-grid.mobile-slider,.fleet-grid.mobile-slider,.partner-grid.mobile-slider,.testimonial-grid.mobile-slider{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:-18px;padding:0 18px 10px;scroll-padding-inline:18px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x}
+  .mobile-slider::-webkit-scrollbar{display:none}
+  .mobile-slider>*,.destination-grid.mobile-slider>*,.fleet-grid.mobile-slider>*,.partner-grid.mobile-slider>*,.testimonial-grid.mobile-slider>*{flex:0 0 82%;scroll-snap-align:start;min-width:0}
   .destination-grid.mobile-slider>.destination{min-height:380px}
+  .testimonial-grid.mobile-slider>.testimonial-card{min-height:250px}
 }
 @media(max-width:640px){
-  .mobile-slider{margin-inline:-12px;padding:0 12px 10px;scroll-padding-inline:12px}
+  .mobile-slider,.destination-grid.mobile-slider,.fleet-grid.mobile-slider,.partner-grid.mobile-slider,.testimonial-grid.mobile-slider{margin-inline:-12px;padding:0 12px 10px;scroll-padding-inline:12px}
   .mobile-slider>*{flex-basis:86%}
 }
 .md-page{max-width:760px;padding:56px 0 90px}
