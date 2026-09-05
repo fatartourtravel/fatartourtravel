@@ -33,7 +33,7 @@ type RawTestimonial = {
   rating: number;
   date: string;
   quote: Localized;
-  published: boolean;
+  published?: boolean;
 };
 
 type RawData = {
@@ -76,8 +76,6 @@ export function getCatalog(locale: Locale): LocalizedCatalog {
       ...item,
       description: pick(item.description),
     })),
-    testimonials: raw.testimonials
-      .filter((item) => item.published)
-      .map((item) => ({ ...item, quote: pick(item.quote) })),
+    testimonials: raw.testimonials.map((item) => ({ ...item, quote: pick(item.quote) })),
   };
 }

@@ -4,9 +4,10 @@ import type { Currency, LocalizedCatalog, PackageType } from "@/lib/catalog";
 import type { Dictionary } from "@/lib/copy";
 import type { Locale } from "@/lib/i18n";
 import { fill, waLink } from "@/lib/site";
+import AutoSlider from "@/components/AutoSlider";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type MouseEvent } from "react";
 
 function money(value: number, currency: Currency) {
   if (currency === "IDR") {
@@ -35,7 +36,15 @@ export default function HomePage({
   const [currency, setCurrency] = useState<Currency>(locale === "id" ? "IDR" : "MYR");
   const [pax, setPax] = useState("4");
   const [packageType, setPackageType] = useState<PackageType>("standard");
+  const [scrolled, setScrolled] = useState(false);
   const otherLocale = locale === "en" ? "id" : "en";
+
+  const moveHero = (event: MouseEvent<HTMLElement>) => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--mx", ((event.clientX - rect.left) / rect.width - 0.5).toFixed(3));
+    event.currentTarget.style.setProperty("--my", ((event.clientY - rect.top) / rect.height - 0.5).toFixed(3));
+  };
 
   const minPrices = useMemo(
     () =>
@@ -49,12 +58,42 @@ export default function HomePage({
   const convert = (myr: number) => myr * data.currencyRates[currency];
   const typeLabel = packageType === "full" ? t.packages.full : t.packages.standard;
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    document.documentElement.classList.add("aos-on");
+    const nodes = document.querySelectorAll("[data-reveal]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-in");
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("aos-on");
+    };
+  }, []);
+
   return (
     <main>
-      <header className="nav-wrap">
+      <header className={scrolled ? "nav-wrap is-scrolled" : "nav-wrap"}>
         <nav className="nav container" aria-label={t.nav.aria}>
           <Link className="brand" href={`/${locale}`} aria-label={t.brand.homeAria}>
-            <Image src="/fatar-logo.png" alt={t.brand.logoAlt} width={62} height={62} priority />
+            <Image src="/android-chrome-512x512.png" alt={t.brand.logoAlt} width={62} height={62} priority />
             <span>
               <b>{t.brand.short}</b>
               <small>{t.brand.name}</small>
@@ -83,14 +122,31 @@ export default function HomePage({
         </nav>
       </header>
 
-      <section className="hero" id="top">
+      <section className="hero" id="top" onMouseMove={moveHero}>
+        <div className="hero-bg-wrap" aria-hidden="true">
+          <div className="hero-bg" />
+        </div>
         <div className="hero-overlay" />
         <div className="container hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow">{t.hero.eyebrow}</span>
-            <h1>{t.hero.h1}</h1>
-            <p>{t.hero.lead}</p>
-            <div className="hero-actions">
+            <span className="eyebrow hero-in" style={{ animationDelay: "80ms" }}>
+              {t.hero.eyebrow}
+            </span>
+            <h1>
+              {t.hero.h1.split(/(\s+)/).map((part, index) =>
+                /^\s+$/.test(part) ? (
+                  part
+                ) : (
+                  <span key={`${part}-${index}`} className="hero-word" style={{ animationDelay: `${180 + index * 36}ms` }}>
+                    {part}
+                  </span>
+                )
+              )}
+            </h1>
+            <p className="hero-in" style={{ animationDelay: "720ms" }}>
+              {t.hero.lead}
+            </p>
+            <div className="hero-actions hero-in" style={{ animationDelay: "880ms" }}>
               <a className="btn" href="#packages">
                 {t.hero.ctaPackages}
               </a>
@@ -99,23 +155,27 @@ export default function HomePage({
               </a>
             </div>
             <div className="trust-row" aria-label={t.hero.trustAria}>
-              {t.hero.trust.map((item) => (
-                <span key={item}>✓ {item}</span>
+              {t.hero.trust.map((item, index) => (
+                <span key={item} className="hero-in" style={{ animationDelay: `${1040 + index * 90}ms` }}>
+                  ✓ {item}
+                </span>
               ))}
             </div>
           </div>
-          <aside className="hero-card">
-            <span className="mini">{t.hero.cardEyebrow}</span>
-            <h2>{t.hero.cardTitle}</h2>
-            <p>{t.hero.cardText}</p>
-            <a href={waLink(t.wa.quote)} target="_blank" rel="noreferrer">
-              {t.hero.cardCta}
-            </a>
-          </aside>
+          <div className="hero-card-wrap">
+            <aside className="hero-card">
+              <span className="mini">{t.hero.cardEyebrow}</span>
+              <h2>{t.hero.cardTitle}</h2>
+              <p>{t.hero.cardText}</p>
+              <a href={waLink(t.wa.quote)} target="_blank" rel="noreferrer">
+                {t.hero.cardCta}
+              </a>
+            </aside>
+          </div>
         </div>
       </section>
 
-      <section className="quick-services" id="services">
+      <section className="quick-services" id="services" data-reveal>
         <div className="container service-grid">
           {t.services.map((item) => (
             <article className="service-card" key={item.title}>
@@ -127,7 +187,7 @@ export default function HomePage({
         </div>
       </section>
 
-      <section className="section" id="packages">
+      <section className="section" id="packages" data-reveal>
         <div className="container">
           <div className="section-head">
             <div>
@@ -217,7 +277,7 @@ export default function HomePage({
         </div>
       </section>
 
-      <section className="section split-section" id="why-fatar">
+      <section className="section split-section" id="why-fatar" data-reveal>
         <div className="container split">
           <div>
             <span className="eyebrow dark">{t.why.eyebrow}</span>
@@ -237,7 +297,7 @@ export default function HomePage({
         </div>
       </section>
 
-      <section className="section destination-section">
+      <section className="section destination-section" data-reveal>
         <div className="container">
           <div className="section-head compact">
             <div>
@@ -245,7 +305,7 @@ export default function HomePage({
               <h2>{t.destinations.h2}</h2>
             </div>
           </div>
-          <div className="destination-grid">
+          <AutoSlider className="destination-grid">
             <article className="destination batam">
               <div>
                 <span>01</span>
@@ -260,11 +320,11 @@ export default function HomePage({
                 <p>{t.destinations.bintanText}</p>
               </div>
             </article>
-          </div>
+          </AutoSlider>
         </div>
       </section>
 
-      <section className="section fleet-section" id="car-rental">
+      <section className="section fleet-section" id="car-rental" data-reveal>
         <div className="container">
           <div className="section-head">
             <div>
@@ -273,7 +333,7 @@ export default function HomePage({
               <p>{t.cars.lead}</p>
             </div>
           </div>
-          <div className="fleet-grid">
+          <AutoSlider className="fleet-grid">
             {data.carRentals.map((car) => (
               <article className="fleet-card" key={car.name}>
                 <div className="fleet-image">
@@ -302,11 +362,11 @@ export default function HomePage({
                 </div>
               </article>
             ))}
-          </div>
+          </AutoSlider>
         </div>
       </section>
 
-      <section className="section partners-section" id="hotel">
+      <section className="section partners-section" id="hotel" data-reveal>
         <div className="container">
           <div className="section-head">
             <div>
@@ -315,7 +375,7 @@ export default function HomePage({
               <p>{t.hotels.lead}</p>
             </div>
           </div>
-          <div className="partner-grid">
+          <AutoSlider className="partner-grid">
             {data.hotelPartners.map((item) => (
               <article className="partner-card" key={item.name}>
                 <div className="partner-image">
@@ -336,11 +396,11 @@ export default function HomePage({
                 </div>
               </article>
             ))}
-          </div>
+          </AutoSlider>
         </div>
       </section>
 
-      <section className="section restaurant-section" id="restaurant">
+      <section className="section restaurant-section" id="restaurant" data-reveal>
         <div className="container">
           <div className="section-head">
             <div>
@@ -349,7 +409,7 @@ export default function HomePage({
               <p>{t.restaurants.lead}</p>
             </div>
           </div>
-          <div className="partner-grid">
+          <AutoSlider className="partner-grid">
             {data.restaurantPartners.map((item) => (
               <article className="partner-card dark-card" key={item.name}>
                 <div className="partner-image">
@@ -370,40 +430,38 @@ export default function HomePage({
                 </div>
               </article>
             ))}
-          </div>
+          </AutoSlider>
         </div>
       </section>
 
-      {data.testimonials.length > 0 && (
-        <section className="section testimonial-section" id="testimonials">
-          <div className="container">
-            <div className="section-head">
-              <div>
-                <span className="eyebrow dark">{t.testimonials.eyebrow}</span>
-                <h2>{t.testimonials.h2}</h2>
-                <p>{t.testimonials.lead}</p>
-              </div>
-            </div>
-            <div className="testimonial-grid">
-              {data.testimonials.map((item, i) => (
-                <figure className="testimonial-card" key={`${item.name}-${i}`}>
-                  <div className="stars">{"★".repeat(item.rating)}</div>
-                  <blockquote>“{item.quote}”</blockquote>
-                  <figcaption>
-                    <b>{item.name}</b>
-                    <span>
-                      {item.location}
-                      {item.date ? ` • ${item.date}` : ""}
-                    </span>
-                  </figcaption>
-                </figure>
-              ))}
+      <section className="section testimonial-section" id="testimonials" data-reveal>
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <span className="eyebrow dark">{t.testimonials.eyebrow}</span>
+              <h2>{t.testimonials.h2}</h2>
+              <p>{t.testimonials.lead}</p>
             </div>
           </div>
-        </section>
-      )}
+          <AutoSlider className="testimonial-grid">
+            {data.testimonials.map((item, i) => (
+              <figure className="testimonial-card" key={`${item.name}-${i}`}>
+                <div className="stars">{"★".repeat(item.rating)}</div>
+                <blockquote>“{item.quote}”</blockquote>
+                <figcaption>
+                  <b>{item.name}</b>
+                  <span>
+                    {item.location}
+                    {item.date ? ` • ${item.date}` : ""}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </AutoSlider>
+        </div>
+      </section>
 
-      <section className="section faq-section" id="faq">
+      <section className="section faq-section" id="faq" data-reveal>
         <div className="container faq-grid">
           <div>
             <span className="eyebrow dark">{t.faq.eyebrow}</span>
@@ -421,7 +479,7 @@ export default function HomePage({
         </div>
       </section>
 
-      <section className="cta">
+      <section className="cta" data-reveal>
         <div className="container cta-inner">
           <div>
             <span className="eyebrow">{t.cta.eyebrow}</span>
@@ -437,7 +495,7 @@ export default function HomePage({
       <footer>
         <div className="container footer-grid">
           <div className="brand footer-brand">
-            <Image src="/fatar-logo.png" alt="" width={58} height={58} />
+            <Image src="/android-chrome-192x192.png" alt="" width={58} height={58} />
             <span>
               <b>{t.brand.short}</b>
               <small>{t.brand.legalName}</small>

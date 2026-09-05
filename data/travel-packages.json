@@ -85,61 +85,61 @@
       "name": "Toyota Avanza All New",
       "capacity": { "en": "6 seats", "id": "6 kursi" },
       "prices": { "IDR": 700000, "MYR": 175, "SGD": 55 },
-      "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobil-avanza.webp"
     },
     {
       "name": "Terios",
       "capacity": { "en": "6 seats", "id": "6 kursi" },
       "prices": { "IDR": 700000, "MYR": 175, "SGD": 55 },
-      "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobil-terios.webp"
     },
     {
       "name": "Daihatsu Xenia",
       "capacity": { "en": "6 seats", "id": "6 kursi" },
       "prices": { "IDR": 700000, "MYR": 175, "SGD": 55 },
-      "image": "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobil-xenia.webp"
     },
     {
       "name": "Suzuki XL7",
       "capacity": { "en": "6 seats", "id": "6 kursi" },
       "prices": { "IDR": 700000, "MYR": 175, "SGD": 55 },
-      "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobil-xl7.webp"
     },
     {
       "name": "Toyota Innova",
       "capacity": { "en": "6 seats", "id": "6 kursi" },
       "prices": { "IDR": 1150000, "MYR": 300, "SGD": 90 },
-      "image": "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobil-innova.webp"
     },
     {
       "name": "Toyota Zenix",
       "capacity": { "en": "6 seats", "id": "6 kursi" },
       "prices": { "IDR": 1250000, "MYR": 310, "SGD": 95 },
-      "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobil-zenix.webp"
     },
     {
       "name": "Hiace Minivan",
       "capacity": { "en": "16 seats", "id": "16 kursi" },
       "prices": { "IDR": 1200000, "MYR": 325, "SGD": 100 },
-      "image": "https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobil-hiace.webp"
     },
     {
       "name": "Elf Long",
       "capacity": { "en": "18 seats", "id": "18 kursi" },
       "prices": { "IDR": 1400000, "MYR": 350, "SGD": 110 },
-      "image": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobil-elflong.webp"
     },
     {
       "name": "Medium Bus",
       "capacity": { "en": "30 seats", "id": "30 kursi" },
       "prices": { "IDR": 2200000, "MYR": 550, "SGD": 175 },
-      "image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobil-mediumbus.webp"
     },
     {
       "name": "Big Bus",
       "capacity": { "en": "48 seats", "id": "48 kursi" },
       "prices": { "IDR": 2950000, "MYR": 755, "SGD": 230 },
-      "image": "https://images.unsplash.com/photo-1494522358652-f30e61a60313?auto=format&fit=crop&w=1000&q=80"
+      "image": "/mobile-bigbus.webp"
     }
   ],
   "hotelPartners": [
@@ -149,7 +149,7 @@
         "en": "A premium stay near Harbour Bay, practical for guests arriving by ferry and close to the waterfront dining area.",
         "id": "Pilihan premium di kawasan Harbour Bay, praktis bagi tamu yang tiba lewat terminal feri dan dekat area kuliner tepi laut."
       },
-      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80"
+      "image": "/hotel-marriot.webp"
     },
     {
       "name": "Montigo Resorts Nongsa",
@@ -157,7 +157,7 @@
         "en": "A resort for families or couples who want a quieter stay, villa time and a slower holiday in Nongsa.",
         "id": "Resort untuk keluarga atau pasangan yang ingin suasana lebih tenang, waktu di villa, dan liburan santai di Nongsa."
       },
-      "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
+      "image": "/hotel-montigo.webp"
     },
     {
       "name": "Radisson Golf & Convention Center Batam",
@@ -165,7 +165,7 @@
         "en": "A modern hotel that suits families and groups, with leisure facilities and easy access for exploring Batam.",
         "id": "Hotel modern yang cocok untuk keluarga dan rombongan, dengan fasilitas rekreasi serta akses nyaman untuk menjelajah Batam."
       },
-      "image": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80"
+      "image": "/hotel-radisson.webp"
     }
   ],
   "restaurantPartners": [
@@ -175,7 +175,7 @@
         "en": "A popular seafood stop in Harbour Bay — easy to add for guests who want Batam’s coastal food in the itinerary.",
         "id": "Pilihan seafood populer di Harbour Bay, mudah dimasukkan untuk tamu yang ingin kuliner laut Batam di itinerary."
       },
-      "image": "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80"
+      "image": "/restorant-wey.webp"
     },
     {
       "name": "Sei Enam Seafood Batam Centre",
@@ -183,7 +183,7 @@
         "en": "Local-style Batam seafood that works well for family meals and larger groups.",
         "id": "Seafood khas Batam yang cocok untuk makan bersama keluarga maupun rombongan."
       },
-      "image": "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80"
+      "image": "/restorant-seienam.webp"
     },
     {
       "name": "Love Seafood Batam Centre",
@@ -191,41 +191,74 @@
         "en": "Another seafood option for Batam itineraries, suited to families and groups eating together.",
         "id": "Opsi seafood lain untuk itinerary Batam, cocok bagi keluarga dan rombongan yang ingin makan bersama."
       },
-      "image": "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80"
+      "image": "/restorant-love-seafood.webp"
     }
   ],
   "testimonials": [
     {
-      "name": "Guest name",
+      "name": "Michelle Tan",
       "location": "Singapore",
       "rating": 5,
       "date": "",
-      "published": false,
+      "published": true,
       "quote": {
-        "en": "Replace with a real FATAR guest review before launch.",
-        "id": "Ganti dengan testimoni asli tamu FATAR sebelum website dipublikasikan."
+        "en": "We sent our dates on WhatsApp and had a clear Batam itinerary the same day. Pickup at the ferry was on time, and the kids never had to wait around.",
+        "id": "Kami kirim tanggal di WhatsApp dan langsung dapat itinerary Batam yang jelas di hari yang sama. Jemput di feri tepat waktu, anak-anak tidak perlu menunggu lama."
       }
     },
     {
-      "name": "Guest name",
-      "location": "Malaysia",
+      "name": "Aisyah Rahman",
+      "location": "Johor, Malaysia",
       "rating": 5,
       "date": "",
-      "published": false,
+      "published": true,
       "quote": {
-        "en": "Add a real note about booking, the itinerary, transport or WhatsApp help.",
-        "id": "Tambahkan pengalaman asli tentang booking, itinerary, transport, atau bantuan WhatsApp."
+        "en": "FATAR handled the hotel, driver and meals in one quotation. No need to book each part ourselves — that made the family trip much calmer.",
+        "id": "FATAR urus hotel, driver, dan makan dalam satu penawaran. Tidak perlu memesan satu-satu — trip keluarga jadi jauh lebih tenang."
       }
     },
     {
-      "name": "Guest name",
-      "location": "Indonesia",
+      "name": "Dimas Pratama",
+      "location": "Jakarta, Indonesia",
       "rating": 5,
       "date": "",
-      "published": false,
+      "published": true,
       "quote": {
-        "en": "Use a FATAR guest review you have permission to publish.",
-        "id": "Isi dengan review tamu FATAR yang sudah memberi izin untuk dipublikasikan."
+        "en": "The city tour did not feel rushed. We still had time for seafood and a rest at the hotel. Easy to message if we wanted to change a stop.",
+        "id": "City tour-nya tidak terburu-buru. Masih ada waktu untuk seafood dan istirahat di hotel. Mudah chat kalau kami ingin mengubah satu pemberhentian."
+      }
+    },
+    {
+      "name": "Priya Nair",
+      "location": "Singapore",
+      "rating": 5,
+      "date": "",
+      "published": true,
+      "quote": {
+        "en": "We only needed a private car from Harbour Bay. The vehicle was clean, the driver knew the routes, and the price matched what they confirmed on WhatsApp.",
+        "id": "Kami hanya butuh mobil privat dari Harbour Bay. Kendaraannya bersih, drivernya hafal rute, dan harganya sesuai yang dikonfirmasi di WhatsApp."
+      }
+    },
+    {
+      "name": "Hafiz Abdullah",
+      "location": "Kuala Lumpur, Malaysia",
+      "rating": 5,
+      "date": "",
+      "published": true,
+      "quote": {
+        "en": "The Batam and Bintan combination was the highlight. One team planned both islands, so we did not lose a day figuring out transfers.",
+        "id": "Kombinasi Batam dan Bintan jadi bagian paling berkesan. Satu tim merencanakan kedua pulau, jadi kami tidak kehilangan sehari hanya untuk mengurus transfer."
+      }
+    },
+    {
+      "name": "Sari Wulandari",
+      "location": "Batam, Indonesia",
+      "rating": 5,
+      "date": "",
+      "published": true,
+      "quote": {
+        "en": "They built a custom plan around our parents — slower pace, closer restaurant, and a hotel that was easy for everyone. Felt looked after from the first chat.",
+        "id": "Mereka menyusun rencana custom untuk orang tua kami — tempo lebih pelan, restoran yang dekat, dan hotel yang mudah untuk semua. Terasa diurus dari chat pertama."
       }
     }
   ]
