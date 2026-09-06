@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 
 export type AdminActionState = { ok?: string; error?: string } | null;
 
-function adminRedirect() {
+function adminRedirect(): never {
   redirect(getAdminUrl() ?? "/");
 }
 
