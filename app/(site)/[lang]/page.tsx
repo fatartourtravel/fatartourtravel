@@ -1,5 +1,5 @@
 import HomePage from "@/components/HomePage";
-import { getCatalog } from "@/lib/catalog";
+import { getCatalog } from "@/lib/catalog-store";
 import { getDictionary } from "@/lib/copy";
 import { isLocale } from "@/lib/i18n";
 import { SITE_URL, WHATSAPP_DISPLAY } from "@/lib/site";
@@ -10,7 +10,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
   if (!isLocale(lang)) notFound();
 
   const t = getDictionary(lang);
-  const data = getCatalog(lang);
+  const data = await getCatalog(lang);
   const inLanguage = lang === "id" ? "id-ID" : "en";
 
   const jsonLd = [

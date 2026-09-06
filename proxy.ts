@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { isPublicAdminPath } from "./lib/admin-path";
 import { defaultLocale, locales } from "./lib/i18n";
 
 export function proxy(request: NextRequest) {
@@ -12,6 +13,16 @@ export function proxy(request: NextRequest) {
     pathname === "/robots.txt" ||
     pathname.includes(".")
   ) {
+    return;
+  }
+
+  if (isPublicAdminPath(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/admin";
+    return NextResponse.rewrite(url);
+  }
+
+  if (process.env.NODE_ENV !== "production" && (pathname === "/admin" || pathname.startsWith("/admin/"))) {
     return;
   }
 

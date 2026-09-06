@@ -4,7 +4,7 @@ import type { Locale } from "./i18n";
 type Localized = { en: string; id: string };
 type PriceMap = Record<string, number>;
 
-type RawPackage = {
+export type RawPackage = {
   slug: string;
   title: Localized;
   duration: string;
@@ -14,7 +14,7 @@ type RawPackage = {
   prices: { standard: PriceMap; full: PriceMap };
 };
 
-type RawCar = {
+export type RawCar = {
   name: string;
   capacity: Localized;
   prices: Record<"IDR" | "MYR" | "SGD", number>;
@@ -36,7 +36,7 @@ type RawTestimonial = {
   published?: boolean;
 };
 
-type RawData = {
+export type RawCatalog = {
   currencyBase: string;
   currencyRates: Record<"MYR" | "SGD" | "IDR", number>;
   packages: RawPackage[];
@@ -46,7 +46,8 @@ type RawData = {
   testimonials: RawTestimonial[];
 };
 
-const raw = packageData as RawData;
+export const fallbackCatalog = packageData as RawCatalog;
+export const PAX_OPTIONS = ["4", "6", "8", "10", "12"] as const;
 
 export type Currency = "MYR" | "SGD" | "IDR";
 export type PackageType = "standard" | "full";
@@ -57,7 +58,7 @@ export type LocalizedPartner = Omit<RawPartner, "description"> & { description: 
 export type LocalizedTestimonial = Omit<RawTestimonial, "quote"> & { quote: string };
 
 export type LocalizedCatalog = {
-  currencyRates: RawData["currencyRates"];
+  currencyRates: RawCatalog["currencyRates"];
   packages: LocalizedPackage[];
   carRentals: LocalizedCar[];
   hotelPartners: LocalizedPartner[];
@@ -65,7 +66,13 @@ export type LocalizedCatalog = {
   testimonials: LocalizedTestimonial[];
 };
 
-export function getCatalog(locale: Locale): LocalizedCatalog {
+export type PriceDraft = {
+  currencyRates: RawCatalog["currencyRates"];
+  packages: { slug: string; prices: RawPackage["prices"] }[];
+  carRentals: { name: string; prices: RawCar["prices"] }[];
+};
+
+export function localizeCatalog(raw: RawCatalog, locale: Locale): LocalizedCatalog {
   const pick = (value: Localized) => value[locale];
   return {
     currencyRates: raw.currencyRates,
@@ -77,5 +84,20 @@ export function getCatalog(locale: Locale): LocalizedCatalog {
       description: pick(item.description),
     })),
     testimonials: raw.testimonials.map((item) => ({ ...item, quote: pick(item.quote) })),
+  };
+}
+
+export function applyPriceDraft(current: RawCatalog, draft: PriceDraft): RawCatalog {
+  return {
+    ...current,
+    currencyRates: draft.currencyRates,
+    packages: current.packages.map((pkg) => {
+      const next = draft.packages.find((item) => item.slug === pkg.slug);
+      return next ? { ...pkg, prices: next.prices } : pkg;
+    }),
+    carRentals: current.carRentals.map((car) => {
+      const next = draft.carRentals.find((item) => item.name === car.name);
+      return next ? { ...car, prices: next.prices } : car;
+    }),
   };
 }

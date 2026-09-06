@@ -61,3 +61,27 @@ footer{background:#04142e;color:#d9e3f3;padding:48px 0 26px}.footer-grid{display
 .md-body li{margin:0 0 8px}
 .md-body a{color:#8d6807;font-weight:800;text-decoration:underline;text-underline-offset:3px}
 .md-body strong{color:var(--navy)}
+.admin-shell{width:min(980px,calc(100% - 36px));margin:36px auto 80px}
+.admin-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:22px}
+.admin-top h1,.admin-login h1,.admin-card h2{color:var(--navy);letter-spacing:-.03em;margin:0 0 8px}
+.admin-top p,.admin-login p,.admin-hint{color:var(--muted);line-height:1.6}
+.admin-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 12px 28px rgba(10,31,68,.06);margin-bottom:18px}
+.admin-login{max-width:420px;margin:12vh auto}
+.admin-login label,.admin-rate-grid label{display:block;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#697386}
+.admin-login input,.admin-rate-grid input,.admin-table input{width:100%;margin-top:7px;border:1px solid #d9dee7;border-radius:12px;padding:11px 12px;font:inherit;color:var(--ink)}
+.admin-login .btn{width:100%;margin-top:16px}
+.admin-stack{display:grid;gap:0}
+.admin-rate-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.admin-table-wrap{overflow-x:auto}
+.admin-table{width:100%;border-collapse:collapse;margin-top:12px}
+.admin-table th,.admin-table td{padding:8px;text-align:left;white-space:nowrap}
+.admin-table thead th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#7b8798}
+.admin-table tbody th{color:var(--navy);padding-left:0}
+.admin-table input{min-width:92px}
+.admin-hint{font-size:13px;margin:12px 0 0}
+.admin-alert,.admin-ok{padding:12px 14px;border-radius:12px;font-weight:700;margin:0 0 16px}
+.admin-alert{background:#fff1f0;color:#9b1c1c}
+.admin-ok{background:#edf9f2;color:#0b6b3a}
+.admin-save{margin-top:8px;width:min(360px,100%)}
+.admin-card h2 small{display:inline-block;margin-left:8px;font-size:13px;color:#8a94a3;font-weight:800}
+@media(max-width:640px){.admin-shell{width:min(100% - 24px,980px);margin-top:24px}.admin-top{flex-direction:column}.admin-rate-grid{grid-template-columns:1fr}}
