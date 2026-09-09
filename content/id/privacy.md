@@ -1,7 +1,7 @@
 ---
 title: Privasi
 description: Cara FATAR Tour & Travel menangani informasi yang Anda kirim saat membuka situs atau chat WhatsApp untuk trip Batam atau Bintan.
-updated: "2026-09-05"
+updated: "2026-09-09"
 ---
 
 Halaman ini menjelaskan data yang mungkin dikumpulkan PT. Fatar Mitra Sarana (“FATAR Tour & Travel”) saat Anda memakai [fatartourtravel.com](https://fatartourtravel.com) atau menghubungi kami.
@@ -20,7 +20,7 @@ Kami memakai ini hanya untuk membalas, menyusun itinerary dan penawaran, serta m
 
 ## Informasi dari website
 
-Website mungkin mencatat data teknis dasar seperti jenis browser, bahasa, dan halaman yang dibuka. Jika nanti kami memasang analytics (misalnya Google Analytics), itu dipakai untuk memahami halaman mana yang membantu tamu — bukan untuk menjual data Anda.
+Website mungkin mencatat data teknis dasar seperti jenis browser, bahasa, dan halaman yang dibuka. Kami memakai Google Ads tag untuk mengukur kunjungan dan performa iklan. Google dapat memproses data ini sesuai kebijakan mereka.
 
 Kami tidak menjual informasi pribadi Anda.
 

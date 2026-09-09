@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import "../../globals.css";
 import { getDictionary } from "@/lib/copy";
 import { isLocale, localeAlternateOpenGraph, localeHtmlLang, localeOpenGraph, locales } from "@/lib/i18n";
-import { SITE_URL } from "@/lib/site";
+import { GOOGLE_ADS_ID, SITE_URL } from "@/lib/site";
 
 export async function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -79,7 +80,18 @@ export default async function LocaleLayout({
 
   return (
     <html lang={localeHtmlLang(lang)}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`} strategy="afterInteractive" />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ADS_ID}');
+          `}
+        </Script>
+      </body>
     </html>
   );
 }

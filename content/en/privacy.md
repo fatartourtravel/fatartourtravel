@@ -1,7 +1,7 @@
 ---
 title: Privacy
 description: How FATAR Tour & Travel handles the information you send when you browse the site or chat on WhatsApp about a Batam or Bintan trip.
-updated: "2026-09-05"
+updated: "2026-09-09"
 ---
 
 This page explains what information PT. Fatar Mitra Sarana (“FATAR Tour & Travel”) may collect when you use [fatartourtravel.com](https://fatartourtravel.com) or contact us.
@@ -20,7 +20,7 @@ We use this only to reply, prepare an itinerary and quotation, and follow up abo
 
 ## Information from the website
 
-The website may collect basic technical data such as browser type, language, and pages visited. If we add analytics later (for example Google Analytics), it will be used to understand which pages help guests — not to sell your data.
+The website may collect basic technical data such as browser type, language, and pages visited. We use a Google Ads tag to measure visits and ad performance. Google may process this data under their own policies.
 
 We do not sell your personal information.
 
