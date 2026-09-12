@@ -60,6 +60,18 @@ export type Dictionary = {
     rateNote: string;
     askWa: string;
     imageAlt: string;
+    availableDuration: string;
+    packageOptions: string;
+    packageAvailability: string;
+    explore: string;
+    askPackage: string;
+    optionsAvailable: string;
+    standardAndFull: string;
+    tourFrom: string;
+    detailEyebrow: string;
+    detailLead: string;
+    backToPackages: string;
+    chooseDuration: string;
   };
   why: {
     eyebrow: string;
@@ -68,6 +80,17 @@ export type Dictionary = {
     points: string[];
     quote: string;
     quoteLead: string;
+  };
+  legal: {
+    eyebrow: string;
+    h2: string;
+    lead: string;
+    points: string[];
+    qrTitle: string;
+    qrHint: string;
+    qrAlt: string;
+    pdfLabel: string;
+    pdfNote: string;
   };
   destinations: {
     eyebrow: string;
@@ -126,6 +149,7 @@ export type Dictionary = {
     contact: string;
     privacy: string;
     terms: string;
+    legal: string;
   };
   waFloat: {
     label: string;
@@ -136,6 +160,7 @@ export type Dictionary = {
     custom: string;
     quote: string;
     package: string;
+    group: string;
     car: string;
     hotel: string;
     restaurant: string;
@@ -205,8 +230,8 @@ const en: Dictionary = {
   ],
   packages: {
     eyebrow: "Popular Batam & Bintan packages",
-    h2: "Choose a trip. Set the group size. See the estimate.",
-    lead: "Prices are per person, based on the group size you select. Chat us to lock dates and the final quotation.",
+    h2: "Choose a trip. Explore the options. Ask on WhatsApp.",
+    lead: "Each card groups the same route with its available durations. Open Explore for prices, or chat us for a quotation.",
     currency: "Currency",
     packageType: "Package",
     groupSize: "Group size",
@@ -221,6 +246,19 @@ const en: Dictionary = {
       "* Package prices are based on MYR. SGD and IDR are estimates. Your final quotation is confirmed on WhatsApp.",
     askWa: "Ask for this package",
     imageAlt: "{title} {duration} holiday package",
+    availableDuration: "Available duration",
+    packageOptions: "Package options",
+    packageAvailability: "Package availability",
+    explore: "Explore",
+    askPackage: "Ask package",
+    optionsAvailable: "{n} package options available",
+    standardAndFull: "Standard & Full",
+    tourFrom: "Tour packages from",
+    detailEyebrow: "Holiday package",
+    detailLead:
+      "Choose the duration and package type, then send your dates on WhatsApp. We confirm the final quotation before you book.",
+    backToPackages: "All packages",
+    chooseDuration: "Duration",
   },
   why: {
     eyebrow: "Why travel with FATAR",
@@ -234,6 +272,21 @@ const en: Dictionary = {
     ],
     quote: "“Perjalanan Lebih Bermakna.”",
     quoteLead: "Travel that gives your family more time together — to explore, eat well and rest.",
+  },
+  legal: {
+    eyebrow: "Official company",
+    h2: "A registered Indonesian company you can verify.",
+    lead: "FATAR Tour & Travel is operated by PT. Fatar Mitra Sarana. The AHU statement letter and verification QR are published here so guests can check the company before they book.",
+    points: [
+      "Legal entity: PT. Fatar Mitra Sarana",
+      "AHU statement letter available as PDF",
+      "QR code for official verification",
+    ],
+    qrTitle: "Scan to verify",
+    qrHint: "Use your phone camera to open the official AHU verification.",
+    qrAlt: "AHU verification QR code for PT. Fatar Mitra Sarana",
+    pdfLabel: "Open statement letter (PDF)",
+    pdfNote: "Opens the official surat pernyataan in a new tab.",
   },
   destinations: {
     eyebrow: "Destinations",
@@ -298,6 +351,10 @@ const en: Dictionary = {
         q: "Do you pick us up from the ferry or airport?",
         a: "Yes — tell us your arrival time. We can arrange pickup in Batam and continue with the itinerary from there.",
       },
+      {
+        q: "Is FATAR a registered company?",
+        a: "Yes. FATAR Tour & Travel is run by PT. Fatar Mitra Sarana. You can read the AHU statement letter and scan the verification QR in the Legalitas section on this page.",
+      },
     ],
   },
   cta: {
@@ -315,6 +372,7 @@ const en: Dictionary = {
     contact: "Contact",
     privacy: "Privacy",
     terms: "Booking terms",
+    legal: "Company statement",
   },
   waFloat: {
     label: "Chat with FATAR on WhatsApp",
@@ -328,6 +386,8 @@ const en: Dictionary = {
       "Hi FATAR, I found you on fatartourtravel.com and would like a quotation. Travel dates: ___  Number of guests: ___  Destination: Batam/Bintan",
     package:
       "Hi FATAR, I am interested in {title} {duration}, {type}, around {pax} guests. Please send the itinerary and final quotation. Travel dates: ___",
+    group:
+      "Hi FATAR, I am interested in {title} ({duration}). Please send the itinerary and quotation. Travel dates: ___  Number of guests: ___",
     car: "Hi FATAR, I would like to rent the {name} ({capacity}) in Batam. Rental dates: ___",
     hotel:
       "Hi FATAR, I would like hotel options including {name}. Travel dates: ___  Number of guests: ___",
@@ -399,8 +459,8 @@ const id: Dictionary = {
   ],
   packages: {
     eyebrow: "Paket populer Batam & Bintan",
-    h2: "Pilih trip. Atur jumlah orang. Lihat estimasi harga.",
-    lead: "Harga per orang, sesuai jumlah peserta yang Anda pilih. Chat kami untuk mengunci tanggal dan penawaran final.",
+    h2: "Pilih trip. Lihat opsinya. Tanya di WhatsApp.",
+    lead: "Setiap kartu menggabungkan rute yang sama beserta durasi yang tersedia. Buka Explore untuk harga, atau chat kami untuk penawaran.",
     currency: "Mata uang",
     packageType: "Jenis paket",
     groupSize: "Jumlah orang",
@@ -415,6 +475,19 @@ const id: Dictionary = {
       "* Harga paket berdasarkan MYR. SGD dan IDR adalah estimasi. Penawaran final dikonfirmasi via WhatsApp.",
     askWa: "Tanya paket ini",
     imageAlt: "Paket wisata {title} {duration}",
+    availableDuration: "Durasi tersedia",
+    packageOptions: "Opsi paket",
+    packageAvailability: "Ketersediaan paket",
+    explore: "Explore",
+    askPackage: "Tanya paket",
+    optionsAvailable: "{n} opsi paket tersedia",
+    standardAndFull: "Standard & Full",
+    tourFrom: "Paket wisata mulai",
+    detailEyebrow: "Paket wisata",
+    detailLead:
+      "Pilih durasi dan tipe paket, lalu kirim tanggal di WhatsApp. Kami konfirmasi penawaran final sebelum Anda memesan.",
+    backToPackages: "Semua paket",
+    chooseDuration: "Durasi",
   },
   why: {
     eyebrow: "Mengapa bersama FATAR",
@@ -428,6 +501,21 @@ const id: Dictionary = {
     ],
     quote: "“Perjalanan Lebih Bermakna.”",
     quoteLead: "Perjalanan yang memberi keluarga lebih banyak waktu bersama — untuk jalan-jalan, makan enak, dan istirahat.",
+  },
+  legal: {
+    eyebrow: "Legalitas resmi",
+    h2: "Badan hukum yang bisa Anda verifikasi sendiri.",
+    lead: "FATAR Tour & Travel dikelola PT. Fatar Mitra Sarana. Surat pernyataan AHU dan kode QR verifikasi kami tampilkan di sini, supaya tamu bisa mengecek perusahaan sebelum memesan.",
+    points: [
+      "Badan hukum: PT. Fatar Mitra Sarana",
+      "Surat pernyataan AHU tersedia dalam PDF",
+      "Kode QR untuk verifikasi resmi",
+    ],
+    qrTitle: "Pindai untuk verifikasi",
+    qrHint: "Gunakan kamera HP untuk membuka verifikasi AHU resmi.",
+    qrAlt: "Kode QR verifikasi AHU PT. Fatar Mitra Sarana",
+    pdfLabel: "Buka surat pernyataan (PDF)",
+    pdfNote: "Membuka surat pernyataan resmi di tab baru.",
   },
   destinations: {
     eyebrow: "Destinasi",
@@ -492,6 +580,10 @@ const id: Dictionary = {
         q: "Apakah dijemput di feri atau bandara?",
         a: "Ya — kabari jam tiba Anda. Kami bisa atur penjemputan di Batam, lalu lanjut sesuai itinerary.",
       },
+      {
+        q: "Apakah FATAR perusahaan yang terdaftar?",
+        a: "Ya. FATAR Tour & Travel dikelola PT. Fatar Mitra Sarana. Anda dapat membaca surat pernyataan AHU dan memindai QR verifikasi di bagian Legalitas halaman ini.",
+      },
     ],
   },
   cta: {
@@ -509,6 +601,7 @@ const id: Dictionary = {
     contact: "Kontak",
     privacy: "Privasi",
     terms: "Syarat pemesanan",
+    legal: "Surat pernyataan",
   },
   waFloat: {
     label: "Chat FATAR di WhatsApp",
@@ -522,6 +615,8 @@ const id: Dictionary = {
       "Halo FATAR, saya menemukan Anda di fatartourtravel.com dan ingin minta penawaran. Tanggal perjalanan: ___  Jumlah orang: ___  Destinasi: Batam/Bintan",
     package:
       "Halo FATAR, saya tertarik dengan {title} {duration}, {type}, sekitar {pax} orang. Mohon kirim itinerary dan penawaran final. Tanggal perjalanan: ___",
+    group:
+      "Halo FATAR, saya tertarik dengan {title} ({duration}). Mohon kirim itinerary dan penawaran. Tanggal perjalanan: ___  Jumlah orang: ___",
     car: "Halo FATAR, saya ingin sewa {name} ({capacity}) di Batam. Tanggal sewa: ___",
     hotel:
       "Halo FATAR, saya ingin opsi hotel termasuk {name}. Tanggal perjalanan: ___  Jumlah orang: ___",

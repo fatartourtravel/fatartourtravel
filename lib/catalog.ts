@@ -66,6 +66,71 @@ export type LocalizedCatalog = {
   testimonials: LocalizedTestimonial[];
 };
 
+export type PackageGroup = {
+  slug: string;
+  title: string;
+  destinations: string[];
+  image: string;
+  durations: string[];
+  optionCount: number;
+  fromPrice: number;
+  variants: LocalizedPackage[];
+};
+
+export function packageGroupSlug(pkg: Pick<RawPackage, "slug">) {
+  return pkg.slug.replace(/-(?:3d2n|4d3n)$/i, "");
+}
+
+export function countPriceOptions(pkg: Pick<RawPackage, "prices">) {
+  return (["standard", "full"] as const).reduce(
+    (total, type) => total + Object.values(pkg.prices[type]).filter((value) => Number.isFinite(value)).length,
+    0
+  );
+}
+
+export function groupPackages(packages: LocalizedPackage[]): PackageGroup[] {
+  const groups = new Map<string, PackageGroup>();
+
+  for (const item of packages) {
+    const slug = packageGroupSlug(item);
+    const existing = groups.get(slug);
+    const optionCount = countPriceOptions(item);
+    const lowest = Math.min(...Object.values(item.prices.standard), ...Object.values(item.prices.full));
+
+    if (!existing) {
+      groups.set(slug, {
+        slug,
+        title: item.title,
+        destinations: item.destinations,
+        image: item.image,
+        durations: [item.duration],
+        optionCount,
+        fromPrice: lowest,
+        variants: [item],
+      });
+      continue;
+    }
+
+    existing.variants.push(item);
+    existing.optionCount += optionCount;
+    existing.fromPrice = Math.min(existing.fromPrice, lowest);
+    if (!existing.durations.includes(item.duration)) existing.durations.push(item.duration);
+  }
+
+  return [...groups.values()].map((group) => ({
+    ...group,
+    durations: [...group.durations].sort((a, b) => a.localeCompare(b)),
+  }));
+}
+
+export function getPackageGroup(packages: LocalizedPackage[], slug: string) {
+  return groupPackages(packages).find((group) => group.slug === slug) ?? null;
+}
+
+export function getPackageGroupSlugs() {
+  return [...new Set(fallbackCatalog.packages.map(packageGroupSlug))];
+}
+
 export type PriceDraft = {
   currencyRates: RawCatalog["currencyRates"];
   packages: { slug: string; prices: RawPackage["prices"] }[];

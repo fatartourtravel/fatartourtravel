@@ -59,6 +59,7 @@ export async function loadAdminCatalog(): Promise<RawCatalog> {
 export function refreshLandingPages() {
   updateTag(CATALOG_TAG);
   revalidatePath("/[lang]", "page");
+  revalidatePath("/[lang]/packages/[slug]", "page");
   revalidatePath("/en");
   revalidatePath("/id");
 }

@@ -1,29 +1,17 @@
 "use client";
 
-import type { Currency, LocalizedCatalog, PackageType } from "@/lib/catalog";
+import type { Currency, LocalizedCatalog } from "@/lib/catalog";
+import { groupPackages } from "@/lib/catalog";
 import type { Dictionary } from "@/lib/copy";
 import type { Locale } from "@/lib/i18n";
-import { fill, waLink } from "@/lib/site";
+import { formatMoney } from "@/lib/money";
+import { fill, LEGAL_PDF, LEGAL_QR, waLink } from "@/lib/site";
 import AutoSlider from "@/components/AutoSlider";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useMemo, useState, type MouseEvent } from "react";
-
-function money(value: number, currency: Currency) {
-  if (currency === "IDR") {
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency,
-      maximumFractionDigits: 0,
-    }).format(value);
-  }
-  return new Intl.NumberFormat(currency === "MYR" ? "ms-MY" : "en-SG", {
-    style: "currency",
-    currency,
-    maximumFractionDigits: 0,
-  }).format(value);
-}
 
 export default function HomePage({
   locale,
@@ -35,8 +23,7 @@ export default function HomePage({
   data: LocalizedCatalog;
 }) {
   const [currency, setCurrency] = useState<Currency>(locale === "id" ? "IDR" : "MYR");
-  const [pax, setPax] = useState("4");
-  const [packageType, setPackageType] = useState<PackageType>("standard");
+  const packageGroups = useMemo(() => groupPackages(data.packages), [data.packages]);
   const moveHero = (event: MouseEvent<HTMLElement>) => {
     if (window.matchMedia("(pointer: coarse)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -44,17 +31,7 @@ export default function HomePage({
     event.currentTarget.style.setProperty("--my", ((event.clientY - rect.top) / rect.height - 0.5).toFixed(3));
   };
 
-  const minPrices = useMemo(
-    () =>
-      data.packages.map((item) => {
-        const values = Object.values(item.prices[packageType]);
-        return Math.min(...values);
-      }),
-    [data.packages, packageType]
-  );
-
   const convert = (myr: number) => myr * data.currencyRates[currency];
-  const typeLabel = packageType === "full" ? t.packages.full : t.packages.standard;
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -165,74 +142,80 @@ export default function HomePage({
                   <option value="IDR">IDR</option>
                 </select>
               </label>
-              <label>
-                {t.packages.packageType}
-                <select value={packageType} onChange={(e) => setPackageType(e.target.value as PackageType)}>
-                  <option value="standard">{t.packages.standard}</option>
-                  <option value="full">{t.packages.full}</option>
-                </select>
-              </label>
-              <label>
-                {t.packages.groupSize}
-                <select value={pax} onChange={(e) => setPax(e.target.value)}>
-                  {["4", "6", "8", "10", "12"].map((n) => (
-                    <option key={n} value={n}>
-                      {fill(t.packages.paxOption, { n })}
-                    </option>
-                  ))}
-                </select>
-              </label>
             </div>
           </div>
 
-          <div className="package-grid">
-            {data.packages.map((item, index) => {
-              const sourcePrice = item.prices[packageType][pax];
-              const fallback = minPrices[index];
-              const displayPrice = convert(sourcePrice ?? fallback);
-              return (
-                <article className="package-card" key={item.slug}>
-                  <div className="package-image">
-                    <Image
-                      src={item.image}
-                      alt={fill(t.packages.imageAlt, { title: item.title, duration: item.duration })}
-                      fill
-                      sizes="(max-width: 900px) 100vw, 33vw"
-                    />
-                    <div className="image-badge">{item.duration}</div>
-                  </div>
-                  <div className="package-body">
-                    <div className="package-meta">{item.destinations.join(" • ")}</div>
-                    <h3>{item.title}</h3>
-                    <p className="price">
-                      <span>{sourcePrice ? t.packages.from : t.packages.closestFrom}</span>
-                      {money(displayPrice, currency)}
-                      <small>{t.packages.perPerson}</small>
-                    </p>
-                    {!sourcePrice && (
-                      <p className="availability-note">{fill(t.packages.missingPrice, { n: pax })}</p>
-                    )}
-                    <div className="package-actions">
-                      <a
-                        className="btn btn-dark"
-                        href={waLink(
-                          fill(t.wa.package, {
-                            title: item.title,
-                            duration: item.duration,
-                            type: typeLabel,
-                            pax,
-                          })
-                        )}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {t.packages.askWa}
-                      </a>
+          <div className="tour-grid">
+            {packageGroups.map((group) => (
+              <article className="tour-card" key={group.slug}>
+                <div className="tour-thumb">
+                  <Image
+                    src={group.image}
+                    alt={fill(t.packages.imageAlt, { title: group.title, duration: group.durations.join(" / ") })}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                  />
+                  <div className="image-badge">{group.durations.join(" · ")}</div>
+                </div>
+                <div className="tour-body">
+                <h3>{group.title}</h3>
+                <div className="tour-from">
+                  <span>{t.packages.tourFrom}</span>
+                  <strong>{formatMoney(convert(group.fromPrice), currency)}</strong>
+                </div>
+                <ul className="tour-meta">
+                  <li>
+                    <span className="tour-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" strokeWidth="1.8" />
+                        <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                    <div>
+                      <small>{t.packages.availableDuration}</small>
+                      <b>{group.durations.join("  ·  ")}</b>
                     </div>
-                  </div>
-                </article>
-              );
-            })}
+                  </li>
+                  <li>
+                    <span className="tour-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                    <div>
+                      <small>{t.packages.packageOptions}</small>
+                      <b>{t.packages.standardAndFull}</b>
+                    </div>
+                  </li>
+                  <li>
+                    <span className="tour-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M4 10l8-6 8 6v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9z" stroke="currentColor" strokeWidth="1.8" />
+                        <path d="M9 21v-7h6v7" stroke="currentColor" strokeWidth="1.8" />
+                      </svg>
+                    </span>
+                    <div>
+                      <small>{t.packages.packageAvailability}</small>
+                      <b>{fill(t.packages.optionsAvailable, { n: group.optionCount })}</b>
+                    </div>
+                  </li>
+                </ul>
+                <div className="tour-actions">
+                  <Link className="btn tour-explore" href={`/${locale}/packages/${group.slug}`}>
+                    {t.packages.explore}
+                  </Link>
+                  <a
+                    className="btn"
+                    href={waLink(fill(t.wa.group, { title: group.title, duration: group.durations.join(" / ") }))}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t.packages.askPackage}
+                  </a>
+                </div>
+                </div>
+              </article>
+            ))}
           </div>
           <p className="rate-note">{t.packages.rateNote}</p>
         </div>
@@ -255,6 +238,34 @@ export default function HomePage({
             <blockquote>{t.why.quote}</blockquote>
             <p>{t.why.quoteLead}</p>
           </div>
+        </div>
+      </section>
+
+      <section className="section legal-section" id="legalitas" data-reveal>
+        <div className="container legal-grid">
+          <div>
+            <span className="eyebrow dark">{t.legal.eyebrow}</span>
+            <h2>{t.legal.h2}</h2>
+            <p>{t.legal.lead}</p>
+            <ul className="legal-points">
+              {t.legal.points.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <a className="btn btn-dark" href={LEGAL_PDF} target="_blank" rel="noreferrer">
+              {t.legal.pdfLabel}
+            </a>
+            <p className="legal-pdf-note">{t.legal.pdfNote}</p>
+          </div>
+          <aside className="legal-card">
+            <div className="legal-qr">
+              <Image src={LEGAL_QR} alt={t.legal.qrAlt} width={280} height={280} />
+            </div>
+            <div className="legal-card-copy">
+              <b>{t.legal.qrTitle}</b>
+              <span>{t.legal.qrHint}</span>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -309,8 +320,8 @@ export default function HomePage({
                   <h3>{car.name}</h3>
                   <span className="capacity">{car.capacity}</span>
                   <p className="triple-price">
-                    {money(car.prices.IDR, "IDR")} <b>•</b> {money(car.prices.MYR, "MYR")} <b>•</b>{" "}
-                    {money(car.prices.SGD, "SGD")}
+                    {formatMoney(car.prices.IDR, "IDR")} <b>•</b> {formatMoney(car.prices.MYR, "MYR")} <b>•</b>{" "}
+                    {formatMoney(car.prices.SGD, "SGD")}
                   </p>
                   <a
                     className="text-link"

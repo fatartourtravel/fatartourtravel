@@ -1,3 +1,4 @@
+import { getPackageGroupSlugs } from "@/lib/catalog";
 import { getPage, pageSlugs } from "@/lib/content";
 import { locales } from "@/lib/i18n";
 import { SITE_URL } from "@/lib/site";
@@ -11,7 +12,11 @@ export type SitemapEntry = {
 };
 
 export function getSitemapEntries(): SitemapEntry[] {
-  const paths = ["", ...pageSlugs.map((slug) => `/${slug}`)];
+  const paths = [
+    "",
+    ...pageSlugs.map((slug) => `/${slug}`),
+    ...getPackageGroupSlugs().map((slug) => `/packages/${slug}`),
+  ];
 
   return paths.flatMap((path) => {
     const languages = Object.fromEntries([
@@ -23,7 +28,9 @@ export function getSitemapEntries(): SitemapEntry[] {
       const lastmod =
         path === ""
           ? "2026-09-06"
-          : getPage(locale, path.slice(1) as (typeof pageSlugs)[number]).updated ?? "2026-09-05";
+          : path.startsWith("/packages/")
+            ? "2026-09-12"
+            : getPage(locale, path.slice(1) as (typeof pageSlugs)[number]).updated ?? "2026-09-05";
 
       return {
         loc: `${SITE_URL}/${locale}${path}`,

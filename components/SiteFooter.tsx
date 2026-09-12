@@ -36,6 +36,7 @@ export default function SiteFooter({ locale, t }: { locale: Locale; t: Dictionar
           <Link href={`/${locale}/contact`}>{t.footer.contact}</Link>
           <Link href={`/${locale}/privacy`}>{t.footer.privacy}</Link>
           <Link href={`/${locale}/terms`}>{t.footer.terms}</Link>
+          <Link href={`/${locale}#legalitas`}>{t.footer.legal}</Link>
         </div>
         <div className="container copyright">
           © {new Date().getFullYear()} {t.brand.legalName}. {t.footer.copyright}
